@@ -29,23 +29,22 @@ def age?(candidate)
   return candidate[:age] >= 18
 end
 
-def qualified_candidates(candidates)
+def qualified_candidates
   qualified_candidates = []
-
   @candidates.each do |candidate|
-    if ((experienced?(candidate)) && (enoughpoints?(candidate)) && (language?(candidate)) && (applied?(candidate)) && (age?(cadidate)))
+    if ( (experienced?(candidate)) && (enoughpoints?(candidate)) && (language?(candidate)) && (applied?(candidate)) && (age?(candidate)) )
     qualified_candidates << candidate
      # if candidate[:years_of_experience] >= 2 && candidate[:github_points]>=100 && candidate[:date_applied] <= 15 && candidate[:age] >=18 && candidate[:languages] =~ "Ruby" || "Python"
      #  return candidate
+     return qualified_candidates
     end
   end
-  return qualified_candidates
 end
 
 
 
 def ordered_by_qualifications
- puts @candidates.sort_by {|candidates, v| [candidates[:years_of_experience], candidates[:github_points]]  }.reverse 
+ puts @candidates.sort_by {|candidates| [candidates[:years_of_experience], candidates[:github_points]]  }.reverse 
 end
 
 
@@ -70,7 +69,7 @@ end
   end
      print prompt
   when "qualified"
-     qualified_candidates(@candidates).sort_by!{|candidates, v| [candidates[:years_of_experience], candidates[:github_points]]  }.reverse 
+     puts qualified_candidates.sort_by!{|candidates| [candidates[:years_of_experience], candidates[:github_points]]  }.reverse 
      print prompt
   when "quit"
     puts "end program"
@@ -82,5 +81,5 @@ end
  end
 end
 # Run our method
-menu
+
   
